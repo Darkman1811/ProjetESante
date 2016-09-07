@@ -1,0 +1,14 @@
+E-SanteClient/build
+E-santeWeb/build
+E-santeWeb/dist
+ESante2/build
+ESante2/dist
+ESante/build
+ESante/dist
+ESante/ESante-war
+/EJBRemote/build/
+/EJBRemote/dist/
+/EJBRemote/nbproject/private/
+/ESanteDAOLib/nbproject/private/
+/ESanteDAOLib/dist/
+/ESanteDAOLib/build/

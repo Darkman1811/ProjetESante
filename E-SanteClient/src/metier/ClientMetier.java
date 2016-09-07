@@ -26,7 +26,7 @@ import static metier.ConnectionEsante.connection;
  */
 public class ClientMetier {
   public void ajouter(Client client){
-      
+      /*
         ConnectionEsante fact=new ConnectionEsante();
         Connection conn= fact.getConnection();
                   try {
@@ -43,6 +43,8 @@ public class ClientMetier {
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionEsante.class.getName()).log(Level.SEVERE, null, ex);
         }
+              */
+      
                 ClientUI clientUI=new ClientUI();
                 MainWindow.mainLayout.setCenter(clientUI.getLayout()); 
   } 
