@@ -6,7 +6,7 @@
 package UI;
 
 
-import data.JoursFeries;
+import dataNew.JoursFeries;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;

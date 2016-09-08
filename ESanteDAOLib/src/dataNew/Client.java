@@ -93,6 +93,11 @@ public class Client implements Serializable{
     public void setCivilite(String civilite) {
         this.civilite = civilite;
     }
+
+    @Override
+    public String toString() {
+        return   id+"-"+prenom+ " " + nom ;
+    }
     
     
     

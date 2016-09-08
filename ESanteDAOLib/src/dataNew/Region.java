@@ -89,6 +89,11 @@ public class Region implements Serializable{
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return  id + " " + nom_region;
+    }
     
    
 }

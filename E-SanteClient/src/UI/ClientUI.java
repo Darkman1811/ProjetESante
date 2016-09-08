@@ -6,7 +6,7 @@
 package UI;
 
 
-import data.Client;
+import dataNew.Client;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,7 +63,7 @@ public class ClientUI {
     commandeBox.setPadding(new Insets(8));
    
     TableView<Client> tableClients=getClients();
-     
+      System.out.println("test clients");
     contentLayout.getChildren().addAll(labelcenter,commandeBox,tableClients);
     contentLayout.setPadding(new Insets(20));
     return contentLayout;
@@ -71,6 +71,7 @@ public class ClientUI {
     
     public TableView<Client> getClients(){
         ObservableList<Client> clients=FXCollections.observableArrayList();
+       
         clients=cm.getAll();
         //Columns mapping
         TableColumn <Client,Integer> columnId=new TableColumn<>("Id");
@@ -121,10 +122,10 @@ public class ClientUI {
         HBox boxTitle=new HBox(labelAjoutClient);
         boxTitle.setAlignment(Pos.CENTER);
         
-        Label labelId=new Label("Id:");
+    /*    Label labelId=new Label("Id:");
         TextField txtId=new TextField();
         HBox boxId=new HBox(labelId,txtId);
-        
+     */   
         Label labelPrenom=new Label("Prenom:");
         TextField txtPrenom=new TextField();
         HBox boxPrenom=new HBox(labelPrenom,txtPrenom);
@@ -154,20 +155,22 @@ public class ClientUI {
         btnAjouter.setOnAction(e->{
       
             Client client=new Client();
-            client.setId(new Integer(txtId.getText()));
+//            client.setId(new Integer(txtId.getText()));
             client.setPrenom(txtPrenom.getText());
             client.setNom(txtNom.getText());
             client.setEmail(txtEmail.getText());
             client.setPhone(txtPhone.getText());
             client.setAge(txtage.getText());
             client.setCivilite(txtCivilite.getText());
+                
+            
             cm.ajouter(client);
         });
         Button btnAnnuler=new Button("Annuler");
         HBox boxActions=new HBox(btnAjouter,btnAnnuler);
         
         VBox ajoutLayout=new VBox();
-        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxPrenom,boxNom,boxPhone,boxEmail,boxage,boxCivilite,boxActions);
+        ajoutLayout.getChildren().addAll(boxTitle,boxPrenom,boxNom,boxPhone,boxEmail,boxage,boxCivilite,boxActions);
         
         
         Scene scene=new Scene(ajoutLayout);
@@ -225,7 +228,7 @@ public void modifierUI(){
             client.setPhone(txtPhone.getText());
             client.setAge(txtage.getText());
             client.setCivilite(txtCivilite.getText());
-            //ClientMetier cm=new ClientMetier();
+         
             cm.modifier(client); 
          });
         Button btnAnnuler=new Button("Annuler");

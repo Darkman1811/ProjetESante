@@ -69,4 +69,6 @@ public interface TestEJBRemote {
      public void TesterModifierJoursFeries();
      public void TesterSuprimerJoursFeries();
      public void TesterObtenirJoursFeries();
+     
+    
 }

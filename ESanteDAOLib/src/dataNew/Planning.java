@@ -134,6 +134,11 @@ public class Planning implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Planning-" + getId();
+    }
+
    
     
 }

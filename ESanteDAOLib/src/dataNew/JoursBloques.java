@@ -5,6 +5,8 @@
  */
 package dataNew;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +31,9 @@ public class JoursBloques {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date debut_debut_bloque;
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date date_fin_bloque;
+   private java.time.LocalDate date_bloque;
+    private java.time.LocalTime debut_debut_bloque;
+    private java.time.LocalTime date_fin_bloque;
     private String raison;
     @ManyToOne
     private Planning planning;
@@ -45,19 +46,27 @@ public class JoursBloques {
         this.id = id;
     }
 
-    public Date getDebut_debut_bloque() {
+    public LocalDate getDate_bloque() {
+        return date_bloque;
+    }
+
+    public void setDate_bloque(LocalDate date_bloque) {
+        this.date_bloque = date_bloque;
+    }
+
+    public LocalTime getDebut_debut_bloque() {
         return debut_debut_bloque;
     }
 
-    public void setDebut_debut_bloque(Date debut_debut_bloque) {
+    public void setDebut_debut_bloque(LocalTime debut_debut_bloque) {
         this.debut_debut_bloque = debut_debut_bloque;
     }
 
-    public Date getDate_fin_bloque() {
+    public LocalTime getDate_fin_bloque() {
         return date_fin_bloque;
     }
 
-    public void setDate_fin_bloque(Date date_fin_bloque) {
+    public void setDate_fin_bloque(LocalTime date_fin_bloque) {
         this.date_fin_bloque = date_fin_bloque;
     }
 

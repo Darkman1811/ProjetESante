@@ -6,7 +6,7 @@
 package UI;
 
 
-import data.JoursBloques;
+import dataNew.JoursBloques;
 import java.time.LocalTime;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;

@@ -6,6 +6,8 @@
 package dataNew;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,12 +33,9 @@ public class RV implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Temporal(TemporalType.DATE)
-    private java.util.Date dateRV;
-    @Temporal(TemporalType.TIME)
-    private java.util.Date heureDebutRV;
-    @Temporal(TemporalType.TIME)
-    private java.util.Date heureFinRV;
+    private LocalDate dateRV;
+    private LocalTime heureDebutRV;
+    private LocalTime heureFinRV;
     private String etat;
     private String codeRV;
     @ManyToOne
@@ -54,27 +53,27 @@ public class RV implements Serializable{
         this.id = id;
     }
 
-    public Date getDateRV() {
+    public LocalDate getDateRV() {
         return dateRV;
     }
 
-    public void setDateRV(Date dateRV) {
+    public void setDateRV(LocalDate dateRV) {
         this.dateRV = dateRV;
     }
 
-    public Date getHeureDebutRV() {
+    public LocalTime getHeureDebutRV() {
         return heureDebutRV;
     }
 
-    public void setHeureDebutRV(Date heureDebutRV) {
+    public void setHeureDebutRV(LocalTime heureDebutRV) {
         this.heureDebutRV = heureDebutRV;
     }
 
-    public Date getHeureFinRV() {
+    public LocalTime getHeureFinRV() {
         return heureFinRV;
     }
 
-    public void setHeureFinRV(Date heureFinRV) {
+    public void setHeureFinRV(LocalTime heureFinRV) {
         this.heureFinRV = heureFinRV;
     }
 
@@ -100,6 +99,27 @@ public class RV implements Serializable{
 
     public void setPlanning(Planning planning) {
         this.planning = planning;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Pratiquant getPratiquant() {
+        return pratiquant;
+    }
+
+    public void setPratiquant(Pratiquant pratiquant) {
+        this.pratiquant = pratiquant;
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + codeRV;
     }
     
     

@@ -6,9 +6,16 @@
 package UI;
 
 
-import data.RV;
+import dataNew.Client;
+import dataNew.Planning;
+import dataNew.Pratiquant;
+import dataNew.RV;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
@@ -16,6 +23,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -30,6 +38,9 @@ import javafx.stage.Stage;
 import jfxtras.scene.control.CalendarTextField;
 import jfxtras.scene.control.CalendarTimeTextField;
 import jfxtras.scene.control.CalendarTimeTextField;
+import metier.ClientMetier;
+import metier.PlanningMetier;
+import metier.PratiquantMetier;
 import metier.RVMetier;
 
 /**
@@ -39,6 +50,9 @@ import metier.RVMetier;
 public class RVUI {
     
     RVMetier cm= new RVMetier();
+    PlanningMetier pcm=new PlanningMetier();
+    ClientMetier ccm=new ClientMetier();
+    PratiquantMetier prcm=new PratiquantMetier();
     
     public  VBox getLayout(){
     VBox contentLayout=new VBox();     
@@ -91,10 +105,23 @@ public class RVUI {
         columnFin.setMinWidth(50);
         columnFin.setCellValueFactory(new PropertyValueFactory<RV,String>("heureFinRV"));
         
+        TableColumn <RV,Planning> columnPlanning=new TableColumn<>("Planning");
+        columnPlanning.setMinWidth(50);
+        columnPlanning.setCellValueFactory(new PropertyValueFactory<RV,Planning>("planning"));
         
+        
+        TableColumn <RV,Client> columnClient=new TableColumn<>("Client");
+        columnClient.setMinWidth(50);
+        columnClient.setCellValueFactory(new PropertyValueFactory<RV,Client>("client"));
+       
+        
+        TableColumn <RV,Pratiquant> columnPratiquant=new TableColumn<>("Pratiquant");
+        columnPratiquant.setMinWidth(50);
+        columnPratiquant.setCellValueFactory(new PropertyValueFactory<RV,Pratiquant>("pratiquant"));
+       
         TableView<RV> table=new TableView<>();
         table.setItems(rvs);
-        table.getColumns().addAll(columnId,columnCode,columnEtat,columnDate,columnDebut,columnFin);
+        table.getColumns().addAll(columnId,columnCode,columnEtat,columnDate,columnDebut,columnFin,columnPlanning,columnClient,columnPratiquant);
         
         return table;
     }
@@ -134,16 +161,34 @@ public class RVUI {
         CalendarTimeTextField txtFin=new CalendarTimeTextField();
         HBox boxFin=new HBox(labelFin,txtFin);
         
+        Label labelPlanning=new Label("Planning");
+        ChoiceBox<Planning> choicePlanning=new ChoiceBox();
+        choicePlanning.getItems().addAll(pcm.getAll());       
+        HBox boxPlanning=new HBox(labelPlanning,choicePlanning);
+        
+         Label labelClient=new Label("Client");
+        ChoiceBox<Client> choiceClient=new ChoiceBox();
+        choiceClient.getItems().addAll(ccm.getAll());       
+        HBox boxClient=new HBox(labelClient,choiceClient);
+        
+         Label labelPratiquant=new Label("Pratiquant");
+        ChoiceBox<Pratiquant> choicePratiquant=new ChoiceBox();
+        choicePratiquant.getItems().addAll(prcm.getAll());       
+        HBox boxPratiquant=new HBox(labelPratiquant,choicePratiquant);
                
         Button btnAjouter=new Button("Ajouter");
         btnAjouter.setOnAction(e->{
         RV rv=new RV();
         rv.setId(new Integer(txtId.getText()));
+        
         rv.setDateRV(txtDate.getValue());
-        rv.setHeureDebutRV(LocalTime.of(txtFin.getCalendar().getTime().getHours(),txtFin.getCalendar().getTime().getMinutes()));
+        rv.setHeureDebutRV(LocalTime.of(txtDebut.getCalendar().getTime().getHours(),txtFin.getCalendar().getTime().getMinutes()));
         rv.setHeureFinRV(LocalTime.of(txtFin.getCalendar().getTime().getHours(), txtFin.getCalendar().getTime().getMinutes()));
         rv.setEtat(txtEtat.getText());
         rv.setCodeRV(txtCode.getText());
+        rv.setPlanning(choicePlanning.getValue());
+        rv.setClient(choiceClient.getValue());
+        rv.setPratiquant(choicePratiquant.getValue());
         
         cm.ajouter(rv);
         });
@@ -151,7 +196,7 @@ public class RVUI {
         HBox boxActions=new HBox(btnAjouter,btnAnnuler);
         
         VBox ajoutLayout=new VBox();
-        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxCode,boxEtat,boxDate,boxDebut,boxFin,boxActions);
+        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxCode,boxEtat,boxDate,boxDebut,boxFin,boxPlanning,boxClient,boxPratiquant,boxActions);
         
         
         Scene scene=new Scene(ajoutLayout);
@@ -195,16 +240,33 @@ public void modifierUI(){
         CalendarTimeTextField txtFin=new CalendarTimeTextField();
         HBox boxFin=new HBox(labelFin,txtFin);
         
+         Label labelPlanning=new Label("Planning");
+        ChoiceBox<Planning> choicePlanning=new ChoiceBox();
+        choicePlanning.getItems().addAll(pcm.getAll());       
+        HBox boxPlanning=new HBox(labelPlanning,choicePlanning);
+        
+         Label labelClient=new Label("Client");
+        ChoiceBox<Client> choiceClient=new ChoiceBox();
+        choiceClient.getItems().addAll(ccm.getAll());       
+        HBox boxClient=new HBox(labelClient,choiceClient);
+        
+         Label labelPratiquant=new Label("Pratiquant");
+        ChoiceBox<Pratiquant> choicePratiquant=new ChoiceBox();
+        choicePratiquant.getItems().addAll(prcm.getAll());       
+        HBox boxPratiquant=new HBox(labelPratiquant,choicePratiquant);
                
         Button btnModifier=new Button("Modifier");
         btnModifier.setOnAction(e->{
         RV rv=new RV();
         rv.setId(new Integer(txtId.getText()));
         rv.setDateRV(txtDate.getValue());
-        rv.setHeureDebutRV(LocalTime.of(txtFin.getCalendar().getTime().getHours(),txtFin.getCalendar().getTime().getMinutes()));
+        rv.setHeureDebutRV(LocalTime.of(txtDebut.getCalendar().getTime().getHours(),txtFin.getCalendar().getTime().getMinutes()));
         rv.setHeureFinRV(LocalTime.of(txtFin.getCalendar().getTime().getHours(), txtFin.getCalendar().getTime().getMinutes()));
-        rv.setEtat(txtEtat.getText());
+         rv.setEtat(txtEtat.getText());
         rv.setCodeRV(txtCode.getText());
+        rv.setPlanning(choicePlanning.getValue());
+        rv.setClient(choiceClient.getValue());
+        rv.setPratiquant(choicePratiquant.getValue());
         
         cm.modifier(rv);
         });
@@ -212,7 +274,7 @@ public void modifierUI(){
         HBox boxActions=new HBox(btnModifier,btnAnnuler);
         
         VBox ajoutLayout=new VBox();
-        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxCode,boxEtat,boxDate,boxDebut,boxFin,boxActions);
+        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxCode,boxEtat,boxDate,boxDebut,boxFin,boxPlanning,boxClient,boxPratiquant,boxActions);
         
         
         Scene scene=new Scene(ajoutLayout);

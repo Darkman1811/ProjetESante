@@ -174,6 +174,11 @@ public class Structure implements Serializable{
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return  id + " " + nom_structure ;
+    }
   
          
 }

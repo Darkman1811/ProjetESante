@@ -25,7 +25,7 @@ import data.Region;
 import data.Service;
 import data.Structure;
 import data.Ville;
-import java.time.LocalTime;
+//import java.time.LocalTime;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -62,7 +62,7 @@ CrudJoursFeries crudJoursFeries;
     System.out.println("remote");
     return "Hello from remote ejb";
     }
-    
+   
     //Tester les pays
 
     @Override
@@ -369,6 +369,6 @@ CrudJoursFeries crudJoursFeries;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+   
     
 }

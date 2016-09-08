@@ -7,7 +7,8 @@ package metier;
 
 import UI.ClientUI;
 import UI.MainWindow;
-import data.Client;
+import dataNew.Client;
+import dataNew.Pays;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import static metier.ConnectionEsante.connection;
 
 /**
@@ -26,77 +30,41 @@ import static metier.ConnectionEsante.connection;
  */
 public class ClientMetier {
   public void ajouter(Client client){
-      /*
-        ConnectionEsante fact=new ConnectionEsante();
-        Connection conn= fact.getConnection();
-                  try {
-            PreparedStatement prep=conn.prepareStatement("insert into CLIENT values (?,?,?,?,?,?,?)");
-            prep.setInt(1,client.getId());
-            prep.setString(2, client.getPrenom());
-            prep.setString(3, client.getNom());
-            prep.setString(4, client.getPhone());
-            prep.setString(5, client.getEmail());
-            prep.setInt(6, new Integer(client.getAge()));
-            prep.setString(7, client.getCivilite());
-            prep.executeUpdate();
-         
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionEsante.class.getName()).log(Level.SEVERE, null, ex);
-        }
-              */
       
-                ClientUI clientUI=new ClientUI();
-                MainWindow.mainLayout.setCenter(clientUI.getLayout()); 
+        EntityManagerFactory factory=Persistence.createEntityManagerFactory("ESanteClientPU");
+        EntityManager em=factory.createEntityManager();       
+        em.getTransaction().begin();        
+        em.persist(client);
+        em.getTransaction().commit();
+        em.close();        
+        
+        ClientUI clientUI=new ClientUI();
+        MainWindow.mainLayout.setCenter(clientUI.getLayout()); 
   } 
   
   public void modifier(Client client){
-      
-        ConnectionEsante fact=new ConnectionEsante();
-        Connection conn= fact.getConnection();
-                  try {
-            PreparedStatement prep=conn.prepareStatement("update CLIENT  set prenom=?,nom=?,phone=?,email=?,age=?,civilite=? where id=?");
-           // prep.setInt(1, client.getId());
-            prep.setString(1, client.getPrenom());
-            prep.setString(2, client.getNom());
-            prep.setString(3, client.getPhone());
-            prep.setString(4, client.getEmail());
-            prep.setInt(5, new Integer(client.getAge()));
-            prep.setString(6, client.getCivilite());
-            prep.setInt(7, client.getId());
-            prep.executeUpdate();
-         
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionEsante.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                ClientUI clientUI=new ClientUI();
-                MainWindow.mainLayout.setCenter(clientUI.getLayout()); 
+        EntityManagerFactory factory=Persistence.createEntityManagerFactory("ESanteClientPU");
+        EntityManager em=factory.createEntityManager();       
+        em.getTransaction().begin();        
+        em.merge(client);
+        em.getTransaction().commit();
+        em.close(); 
+    
+        ClientUI clientUI=new ClientUI();
+        MainWindow.mainLayout.setCenter(clientUI.getLayout()); 
   } 
   
   public ObservableList<Client>  getAll(){
       ObservableList<Client> clients=FXCollections.observableArrayList();
-        
-      ConnectionEsante fact=new ConnectionEsante();
-        Connection conn= fact.getConnection();
-                  try {
-                      String sql="select * from CLIENT ";
-                      Statement stat=conn.createStatement();
-                      ResultSet result=stat.executeQuery(sql);
-                    while(result.next()){
-                      Client c=new Client();
-        c.setAge(result.getString(6));
-        c.setCivilite(result.getString(7));
-        c.setEmail(result.getString(5));
-        c.setId(result.getInt(1));
-        c.setNom(result.getString(3));
-        c.setPrenom(result.getString(2));
-        c.setPhone(result.getString(4));
-        clients.add(c);
-                    }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionEsante.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+      
+      EntityManagerFactory factory=Persistence.createEntityManagerFactory("ESanteClientPU");
+      EntityManager em=factory.createEntityManager();       
+      
+      em.getTransaction().begin();  
+      clients.addAll(em.createNamedQuery("Client.findAll").getResultList());
+      em.getTransaction().commit();
+      em.close(); 
+      
     return clients;    
   }
 }

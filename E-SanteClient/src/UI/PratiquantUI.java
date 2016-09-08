@@ -6,7 +6,7 @@
 package UI;
 
 
-import data.Pratiquant;
+import dataNew.Pratiquant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;

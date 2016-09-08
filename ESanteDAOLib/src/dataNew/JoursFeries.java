@@ -5,6 +5,7 @@
  */
 package dataNew;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,8 +30,7 @@ public class JoursFeries {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Temporal(TemporalType.DATE)
-    private java.util.Date date_bloque;
+    private LocalDate date_bloque;
     private String fete;
     @ManyToOne
     private Planning planning;
@@ -44,11 +44,11 @@ public class JoursFeries {
     }
 
    
-    public Date getDate_bloque() {
+    public LocalDate getDate_bloque() {
         return date_bloque;
     }
 
-    public void setDate_bloque(Date date_bloque) {
+    public void setDate_bloque(LocalDate date_bloque) {
         this.date_bloque = date_bloque;
     }
 

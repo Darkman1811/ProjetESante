@@ -112,6 +112,11 @@ public class Pratiquant implements Serializable{
     public void setRv(List<RV> rv) {
         this.rv = rv;
     }
+
+    @Override
+    public String toString() {
+        return  id+"-"+prenom+ " " + nom ;
+    }
     
     
     
