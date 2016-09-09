@@ -6,8 +6,8 @@
 package crud.Admin;
 
 
-import data.JoursFeries;
-import data.Ville;
+import dataNew.JoursFeries;
+import dataNew.Ville;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

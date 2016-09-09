@@ -16,10 +16,7 @@
                 <h:panelGrid columns="2"  >
                     
                     <h:outputLabel value="Date férié"/>
-                    <h:inputText value="#{joursFeriesMB.joursFeries.date_bloque}">
-                        <f:convertDateTime dateStyle="short" locale="FR-fr"/>
-                    </h:inputText>
-                  
+                    <h:inputText value="#{joursFeriesMB.joursFeries.date_bloque}"converter="localDateConverter"/>
                     <h:outputLabel value="Nom fête"/>
                     <h:inputText value="#{joursFeriesMB.joursFeries.fete}"/>                                        
                    

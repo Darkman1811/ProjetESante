@@ -5,8 +5,8 @@
  */
 package crud.Admin;
 
-import data.Structure;
-import data.Ville;
+import dataNew.Structure;
+import dataNew.Ville;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;

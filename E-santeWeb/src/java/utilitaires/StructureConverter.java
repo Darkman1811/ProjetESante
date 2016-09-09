@@ -5,7 +5,7 @@
  */
 package utilitaires;
 
-import data.Structure;
+import dataNew.Structure;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;

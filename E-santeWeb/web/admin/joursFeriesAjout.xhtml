@@ -17,17 +17,12 @@
                 <h:panelGrid columns="2"  >
                     
                     <h:outputLabel value="Date férié"/>
-                    <h:inputText value="#{joursFeriesMB.joursFeries.date_bloque}">
-                        <f:convertDateTime dateStyle="short" locale="FR-fr"/>
-                     </h:inputText>
-                     <h:outputLabel value="Nom fête"/>
-                     <h:inputText value="#{joursFeriesMB.joursFeries.fete}"/> 
-                         
-                         
-                                 
+                    <h:inputText value="#{joursFeriesMB.joursFeries.date_bloque}" converter="localDateConverter"/>
+                    <h:outputLabel value="Nom fête"/>
+                    <h:inputText value="#{joursFeriesMB.joursFeries.fete}"/> 
                    
                 </h:panelGrid>
-                          <h:commandButton action="#{joursFeriesMB.ajouterJoursFeries()}" value="Ajouter" />
+                    <h:commandButton action="#{joursFeriesMB.ajouterJoursFeries()}" value="Ajouter" />
             </h:form>
       
             </ui:define>

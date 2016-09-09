@@ -14,17 +14,19 @@ import crud.Admin.CrudPratiquant;
 import crud.Admin.CrudRV;
 import crud.Admin.CrudServices;
 import crud.Admin.CrudStructures;
-import data.Client;
-import data.JoursBloques;
-import data.JoursFeries;
-import data.Pays;
-import data.Planning;
-import data.Pratiquant;
-import data.RV;
-import data.Region;
-import data.Service;
-import data.Structure;
-import data.Ville;
+import dataNew.Client;
+import dataNew.JoursBloques;
+import dataNew.JoursFeries;
+import dataNew.Pays;
+import dataNew.Planning;
+import dataNew.Pratiquant;
+import dataNew.RV;
+import dataNew.Region;
+import dataNew.Service;
+import dataNew.Structure;
+import dataNew.Ville;
+import java.time.LocalDate;
+import java.time.LocalTime;
 //import java.time.LocalTime;
 import java.util.List;
 import javax.ejb.EJB;
@@ -194,11 +196,10 @@ CrudJoursFeries crudJoursFeries;
     public void TesterAjouterRV() {
      RV rv= new RV();
      rv.setCodeRV("152442");
-     rv.setDateRV(new java.util.Date(2016, 8, 22, 10, 10));
+     rv.setDateRV(LocalDate.now());
      rv.setEtat("Valide");
-     rv.setHeureDebutRV(new java.util.Date(2016, 8, 22, 10, 10));
-     rv.setHeureDebutRV(new java.util.Date(2016, 8, 22, 12, 10));
-     // rv.setPlanning(null);
+     rv.setHeureDebutRV(LocalTime.now());
+     rv.setHeureDebutRV(LocalTime.now());
     crudRV.ajouterRV(rv);
     }
 
@@ -207,10 +208,10 @@ CrudJoursFeries crudJoursFeries;
        RV rv= new RV();
      rv.setId(new Integer("701"));
      rv.setCodeRV("152442");
-     rv.setDateRV(new java.util.Date(2016, 8, 22, 10, 10));
+     rv.setDateRV(LocalDate.now());
      rv.setEtat("Valide");
-     rv.setHeureDebutRV(new java.util.Date(2016, 8, 22, 10, 10));
-     rv.setHeureFinRV(new java.util.Date(2016, 8, 22, 12, 10));
+     rv.setHeureDebutRV(LocalTime.now());
+     rv.setHeureFinRV(LocalTime.now());
      // rv.setPlanning(null);
     crudRV.modifier(rv);
     }
@@ -312,8 +313,8 @@ CrudJoursFeries crudJoursFeries;
     @Override
     public void TesterAjouterJoursBloques() {
         JoursBloques joursBloques= new JoursBloques();
-        joursBloques.setDate_fin_bloque(new java.util.Date(2016,8,22,10,22));
-        joursBloques.setDebut_debut_bloque(new java.util.Date(2016,8,22,9,22));
+        joursBloques.setDate_fin_bloque(LocalTime.now());
+        joursBloques.setDebut_debut_bloque(LocalTime.now());
         joursBloques.setRaison("Netoyage du materiel");
         crudJoursBloques.ajouterJoursBloques(joursBloques);
     }
@@ -322,8 +323,8 @@ CrudJoursFeries crudJoursFeries;
     public void TesterModifierJoursBloques() {
      JoursBloques joursBloques= new JoursBloques();
      joursBloques.setId(new Integer("101"));
-        joursBloques.setDate_fin_bloque(new java.util.Date(2016,8,22,15,0));
-        joursBloques.setDebut_debut_bloque(new java.util.Date(2016,8,22,8,0));
+        joursBloques.setDate_fin_bloque(LocalTime.now());
+        joursBloques.setDebut_debut_bloque(LocalTime.now());
         joursBloques.setRaison("Absence du pratiquant");
         crudJoursBloques.modifier(joursBloques);
     }
@@ -344,7 +345,7 @@ CrudJoursFeries crudJoursFeries;
     @Override
     public boolean TesterAjouterJoursFeries() {
         JoursFeries jours_feries=new JoursFeries();
-        jours_feries.setDate_bloque(new java.util.Date(2016, 8, 22));
+        jours_feries.setDate_bloque(LocalDate.now());
         jours_feries.setFete("Tabaski");
       return  crudJoursFeries.ajouterJoursFeries(jours_feries);
        }
@@ -353,7 +354,7 @@ CrudJoursFeries crudJoursFeries;
     public void TesterModifierJoursFeries() {
     JoursFeries jours_feries=new JoursFeries();
         jours_feries.setId(new Integer("151"));
-        jours_feries.setDate_bloque(new java.util.Date(2016, 8, 23));
+        jours_feries.setDate_bloque(LocalDate.now());
         jours_feries.setFete("Korite");
         crudJoursFeries.modifier(jours_feries);  }
 

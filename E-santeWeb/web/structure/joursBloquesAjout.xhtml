@@ -15,15 +15,14 @@
                         <h:form>
                 <h:panelGrid columns="2"  >
                     
+                    <h:outputLabel value="Date bloqué"/>
+                    <h:inputText value="#{joursBloquesMB.joursBloques.date_bloque}" converter="localDateConverter"/>
+                                        
                     <h:outputLabel value="Début blocage"/>
-                    <h:inputText value="#{joursBloquesMB.joursBloques.debut_debut_bloque}">
-                           <f:convertDateTime dateStyle="short" timeStyle="short" /> 
-                    </h:inputText>
+                    <h:inputText value="#{joursBloquesMB.joursBloques.debut_debut_bloque}" converter="localTimeConverter"/>
                     
                     <h:outputLabel value="Fin blocage"/>
-                    <h:inputText value="#{joursBloquesMB.joursBloques.date_fin_bloque}">
-                           <f:convertDateTime dateStyle="short" timeStyle="short" /> 
-                    </h:inputText>
+                    <h:inputText value="#{joursBloquesMB.joursBloques.date_fin_bloque}" converter="localTimeConverter"/>
                     
                      <h:outputLabel value="Raison blocage"/>
                      <h:inputText value="#{joursBloquesMB.joursBloques.raison}"/>            

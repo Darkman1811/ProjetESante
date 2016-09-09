@@ -7,7 +7,7 @@ package structure;
 
 import admin.*;
 import crud.Admin.CrudRV;
-import data.RV;
+import dataNew.RV;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;

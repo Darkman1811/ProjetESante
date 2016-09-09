@@ -6,8 +6,7 @@
 package crud.Admin;
 
 
-import data.JoursBloques;
-import data.JoursBloques;
+import dataNew.JoursBloques;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,7 +33,8 @@ public boolean modifier(JoursBloques joursBloques){
     
     if(tmp!=null){
     //Garder le meme id l'origine modifier tout le reste avec les nouvelles  valeurs
-        tmp.setId(joursBloques.getId());
+        tmp.setId(joursBloques.getId());        
+        tmp.setDate_bloque(joursBloques.getDate_bloque());
         tmp.setDate_fin_bloque(joursBloques.getDate_fin_bloque());
         tmp.setDebut_debut_bloque(joursBloques.getDebut_debut_bloque());
         tmp.setRaison(joursBloques.getRaison());

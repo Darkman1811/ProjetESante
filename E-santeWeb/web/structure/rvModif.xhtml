@@ -12,6 +12,30 @@
          <ui:composition template="./dashborad.xhtml">
             <ui:define name="content">
                RV Modif
+               
+            <h:form>
+                <h:panelGrid columns="2"  >
+                    
+                    <h:outputLabel value="Code RV"/>
+                    <h:inputText value="#{rVMB.RV.codeRV}"/>
+                    
+                    <h:outputLabel value="Date RV"/>
+                    <h:inputText value="#{rVMB.RV.dateRV}" converter="localDateConverter"/>
+                    <h:outputLabel value="Heure Debut"/>
+                    
+                    <h:inputText value="#{rVMB.RV.heureDebutRV}" converter="localTimeConverter"/>
+                        
+                    <h:outputLabel value="Heure Fin"/>
+                    <h:inputText value="#{rVMB.RV.heureFinRV}" converter="localTimeConverter"/>
+                    
+                    <h:outputLabel value="Etat"/>
+                    <h:inputText value="#{rVMB.RV.etat}"/>
+                                 
+                   
+                </h:panelGrid>
+                <h:commandButton action="#{rVMB.modifierRV()}" value="Ajouter" />
+            </h:form>
+      
             </ui:define>
         </ui:composition>
     </h:body>

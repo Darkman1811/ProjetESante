@@ -5,9 +5,8 @@
  */
 package crud.Admin;
 
-import data.Region;
-import data.RV;
-import data.RV;
+import dataNew.Region;
+import dataNew.RV;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;

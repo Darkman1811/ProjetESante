@@ -6,7 +6,7 @@
 package admin;
 
 import crud.Admin.CrudRegion;
-import data.Region;
+import dataNew.Region;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;

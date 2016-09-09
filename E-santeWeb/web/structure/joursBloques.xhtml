@@ -18,13 +18,19 @@
             <h:form>
                 
                 <h:dataTable value="#{joursBloquesMB.listeJoursBloques}" var="joursBloques" > 
+                    
                     <h:column >
-                        <f:facet name="header">Date début blocage</f:facet> 
+                        <f:facet name="header">Date blocage</f:facet> 
+                        #{joursBloques.date_bloque}
+                    </h:column>
+                    
+                    <h:column >
+                        <f:facet name="header">Heure début blocage</f:facet> 
                         #{joursBloques.debut_debut_bloque}
                     </h:column>
                     
                     <h:column >
-                        <f:facet name="header">Date Fin blocage</f:facet> 
+                        <f:facet name="header">Heure Fin blocage</f:facet> 
                         #{joursBloques.date_fin_bloque}
                     </h:column>
                     

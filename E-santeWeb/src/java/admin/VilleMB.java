@@ -6,7 +6,7 @@
 package admin;
 
 import crud.Admin.CrudVille;
-import data.Ville;
+import dataNew.Ville;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;

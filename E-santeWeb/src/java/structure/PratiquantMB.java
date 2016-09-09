@@ -7,7 +7,7 @@ package structure;
 
 import admin.*;
 import crud.Admin.CrudPratiquant;
-import data.Pratiquant;
+import dataNew.Pratiquant;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;

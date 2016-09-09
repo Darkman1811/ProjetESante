@@ -5,7 +5,9 @@
  */
 package utilitaires;
 
-import dataNew.Pays;
+
+
+import java.time.LocalTime;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -15,22 +17,23 @@ import javax.faces.convert.FacesConverter;
  *
  * @author darkman
  */
-@FacesConverter("paysConverter")
-public class PaysConverter implements Converter{
+@FacesConverter("localTimeConverter")
+public class LocalTimeConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        Pays pays = new Pays();
-      pays.setId(Integer.valueOf(value));  
-      return pays;
+        LocalTime localTime = LocalTime.parse(value);
+        
+        
+      return localTime;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-       Pays pays=(Pays)value;
-       if(pays!=null){
-        String id=String.valueOf(pays.getId());
-        return id; 
+       LocalTime localTime=(LocalTime)value;
+       if(localTime!=null){
+        String time=localTime.toString();
+        return time; 
        }
         return null;
     }

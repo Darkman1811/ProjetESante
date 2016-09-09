@@ -7,7 +7,7 @@ package structure;
 
 import admin.*;
 import crud.Admin.CrudJoursBloques;
-import data.JoursBloques;
+import dataNew.JoursBloques;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;

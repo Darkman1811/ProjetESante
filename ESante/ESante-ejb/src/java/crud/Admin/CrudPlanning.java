@@ -5,8 +5,7 @@
  */
 package crud.Admin;
 
-import data.Planning;
-import data.Planning;
+import dataNew.Planning;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;

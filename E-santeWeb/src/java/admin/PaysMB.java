@@ -6,7 +6,7 @@
 package admin;
 
 import crud.Admin.CrudPays;
-import data.Pays;
+import dataNew.Pays;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;

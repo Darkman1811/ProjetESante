@@ -6,7 +6,7 @@
 package admin;
 
 import crud.Admin.CrudJoursFeries;
-import data.JoursFeries;
+import dataNew.JoursFeries;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;

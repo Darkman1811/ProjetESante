@@ -5,7 +5,7 @@
  */
 package crud.Admin;
 
-import data.Pays;
+import dataNew.Pays;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;

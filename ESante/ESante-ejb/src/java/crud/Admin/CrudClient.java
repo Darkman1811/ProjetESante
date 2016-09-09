@@ -7,7 +7,7 @@ package crud.Admin;
 
 
 
-import data.Client;
+import dataNew.Client;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

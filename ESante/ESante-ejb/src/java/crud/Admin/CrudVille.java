@@ -5,9 +5,9 @@
  */
 package crud.Admin;
 
-import data.Pays;
-import data.Region;
-import data.Ville;
+
+import dataNew.Region;
+import dataNew.Ville;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;

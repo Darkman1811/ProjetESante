@@ -5,8 +5,7 @@
  */
 package crud.Admin;
 
-import data.Service;
-import data.Service;
+import dataNew.Service;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;

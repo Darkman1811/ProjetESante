@@ -7,7 +7,7 @@ package publique;
 
 import admin.*;
 import crud.Admin.CrudClient;
-import data.Client;
+import dataNew.Client;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;

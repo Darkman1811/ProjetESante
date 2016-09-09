@@ -10,10 +10,6 @@
             <file>file:/C:/PROJETS/PROJET%20ESANTE/E-SanteClient/src/UI/MainWindow.java</file>
             <file>file:/C:/PROJETS/PROJET%20ESANTE/E-SanteClient/src/Tests/testJPA.java</file>
         </group>
-        <group name="PROJET ESANTE">
-            <file>file:/C:/PROJETS/PROJETESANTE/E-SanteClient/src/UI/MainWindow.java</file>
-            <file>file:/C:/PROJETS/PROJETESANTE/E-SanteClient/src/UI/PlanningUI.java</file>
-            <file>file:/C:/PROJETS/PROJETESANTE/E-SanteClient/src/UI/RVUI.java</file>
-        </group>
+        <group name="PROJET ESANTE"/>
     </open-files>
 </project-private>

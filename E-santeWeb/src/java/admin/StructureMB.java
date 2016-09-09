@@ -6,7 +6,7 @@
 package admin;
 
 import crud.Admin.CrudStructures;
-import data.Structure;
+import dataNew.Structure;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
