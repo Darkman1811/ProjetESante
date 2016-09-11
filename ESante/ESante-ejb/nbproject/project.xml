@@ -9,6 +9,7 @@
             <explicit-platform explicit-source-supported="true"/>
             <included-library dirs="200">reference.EJBRemote.jar</included-library>
             <included-library dirs="200">reference.ESanteDAOLib.jar</included-library>
+            <included-library dirs="200">reference.ESanteUTILS.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
@@ -27,6 +28,14 @@
             </reference>
             <reference>
                 <foreign-project>ESanteDAOLib</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>jar</target>
+                <clean-target>clean</clean-target>
+                <id>jar</id>
+            </reference>
+            <reference>
+                <foreign-project>ESanteUTILS</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>

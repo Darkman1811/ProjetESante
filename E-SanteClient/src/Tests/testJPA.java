@@ -5,7 +5,17 @@
  */
 package Tests;
 
+import Sync.DataSync;
+import dataNew.JoursBloques;
 import dataNew.Pays;
+import dataNew.Planning;
+import java.io.StringWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.beans.property.IntegerProperty;
@@ -30,8 +40,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import org.osgi.service.jpa.EntityManagerFactoryBuilder;
 /**
  *
@@ -58,8 +72,9 @@ public class testJPA extends Application {
     Button btn=new Button("Tester");
     btn.setOnAction(e->{
      // msg.setText(testerRest());
+        testerRest3();
         
-        EntityManagerFactory factory=Persistence.createEntityManagerFactory("ESanteClientPU");
+      /*  EntityManagerFactory factory=Persistence.createEntityManagerFactory("ESanteClientPU");
         EntityManager em=factory.createEntityManager();
         
         em.getTransaction().begin();
@@ -73,9 +88,10 @@ public class testJPA extends Application {
         em.persist(pays);
         em.getTransaction().commit();
         em.close();
-        
+        */
         
     });
+              
    
     VBox vBox=new VBox(10,btn,msg);
     vBox.setAlignment(Pos.CENTER);
@@ -93,5 +109,54 @@ public class testJPA extends Application {
             return(res);
     }
   
+    public String testerRest2(){
+   
+            Client client = ClientBuilder.newClient();
+            JoursBloques jb=new JoursBloques();
+            jb.setId(2);
+            jb.setDate_bloque(LocalDate.now());
+            jb.setDate_fin_bloque(LocalTime.now());
+            jb.setDebut_debut_bloque(LocalTime.now());
+            jb.setRaison("pas de raison");
+            StringWriter sw=new StringWriter();
+          
+            Response response=client.target("http://localhost:8080/E-santeWeb/rs").path("sync").path("JoursBloques").request(MediaType.APPLICATION_XML).put(Entity.xml(jb));
+        
+        return("dodo");
+    }
+  
     
+      public String testerRest3
+        (){
+            //AJOUT DES JOURS BLOQUES
+            
+              //création de jb1
+            JoursBloques jb1=new JoursBloques();
+            jb1.setId(1);
+            jb1.setDate_bloque(LocalDate.now());
+            jb1.setDate_fin_bloque(LocalTime.now());
+            jb1.setDebut_debut_bloque(LocalTime.now());
+            jb1.setRaison("pas de raison");
+            
+              //création de jb2
+            JoursBloques jb2=new JoursBloques();
+            jb2.setId(2);
+            jb2.setDate_bloque(LocalDate.now());
+            jb2.setDate_fin_bloque(LocalTime.now());
+            jb2.setDebut_debut_bloque(LocalTime.now());
+            jb2.setRaison("Abscense du médecin");
+            
+              //constitution de la liste
+            List<JoursBloques> lst=new ArrayList<JoursBloques>();
+            lst.add(jb1);
+            lst.add(jb2);
+            DataSync sync=new DataSync();
+            sync.setJoursBloques(lst);
+            Client client = ClientBuilder.newClient();
+            
+            Response response=client.target("http://localhost:8080/E-santeWeb/rs").path("sync").path("ListJoursBloques").request(MediaType.APPLICATION_XML).put(Entity.xml(sync));
+      
+        return("dodo");
+    }
+  
 }

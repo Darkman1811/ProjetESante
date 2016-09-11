@@ -5,6 +5,7 @@
  */
 package dataNew;
 
+import utils.LocalDateAdapter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -17,6 +18,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import utils.LocalTimeAdapter;
 
 /**
  *
@@ -27,12 +34,17 @@ import javax.persistence.TemporalType;
   @NamedQuery(name="JoursBloques.findAll",
               query="SELECT JB FROM JoursBloques JB")
 })
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class JoursBloques {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-   private java.time.LocalDate date_bloque;
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+    private java.time.LocalDate date_bloque;
+    @XmlJavaTypeAdapter(value = LocalTimeAdapter.class)
     private java.time.LocalTime debut_debut_bloque;
+    @XmlJavaTypeAdapter(value = LocalTimeAdapter.class)
     private java.time.LocalTime date_fin_bloque;
     private String raison;
     @ManyToOne
