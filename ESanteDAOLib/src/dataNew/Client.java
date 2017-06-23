@@ -7,6 +7,8 @@ package dataNew;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
@@ -29,8 +32,11 @@ public class Client implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private String prenom;
+    @Column(nullable = false)
     private String nom;
+    @Column(unique = true,nullable = false)
     private String phone;
     private String email;
     private String age;
@@ -97,6 +103,26 @@ public class Client implements Serializable{
     @Override
     public String toString() {
         return   id+"-"+prenom+ " " + nom ;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.phone.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Client other = (Client) obj;
+        if (!Objects.equals(this.phone, other.phone)) {
+            return false;
+        }
+        return true;
     }
     
     

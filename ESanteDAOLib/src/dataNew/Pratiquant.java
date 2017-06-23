@@ -7,6 +7,8 @@ package dataNew;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,19 +31,27 @@ import javax.persistence.OneToMany;
   @NamedQuery(name="Pratiquant.findAll",
               query="SELECT P FROM Pratiquant P")
 })
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Pratiquant implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private String prenom;
+    @Column(nullable = false)
     private String nom;
     private String titre;
     private String specialite;
     private String civilite;
     private String age;
+    @Column(unique = true,nullable = false)
+    public String cni;
      @ManyToOne
+     @XmlTransient
     private Planning planning;
       @OneToMany(mappedBy = "pratiquant")
+      @XmlTransient
     private List <RV> rv;
 
     public int getId() {
@@ -97,6 +111,14 @@ public class Pratiquant implements Serializable{
         this.age = age;
     }
 
+    public String getCni() {
+        return cni;
+    }
+
+    public void setCni(String cni) {
+        this.cni = cni;
+    }
+
     public Planning getPlanning() {
         return planning;
     }
@@ -116,6 +138,26 @@ public class Pratiquant implements Serializable{
     @Override
     public String toString() {
         return  id+"-"+prenom+ " " + nom ;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.cni.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pratiquant other = (Pratiquant) obj;
+        if (!Objects.equals(this.cni, other.cni)) {
+            return false;
+        }
+        return true;
     }
     
     

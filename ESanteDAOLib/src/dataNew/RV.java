@@ -19,6 +19,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import utils.LocalDateAdapter;
+import utils.LocalTimeAdapter;
 
 /**
  *
@@ -29,20 +36,28 @@ import javax.persistence.TemporalType;
   @NamedQuery(name="RV.findAll",
               query="SELECT R FROM RV R")
 })
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RV implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate dateRV;
+    @XmlJavaTypeAdapter(value = LocalTimeAdapter.class)
     private LocalTime heureDebutRV;
+    @XmlJavaTypeAdapter(value = LocalTimeAdapter.class)
     private LocalTime heureFinRV;
     private String etat;
     private String codeRV;
     @ManyToOne
+    @XmlTransient
     private Planning planning;
     @ManyToOne
+    @XmlTransient
     private Client client;
     @ManyToOne
+    @XmlTransient
     private Pratiquant pratiquant;
 
     public int getId() {

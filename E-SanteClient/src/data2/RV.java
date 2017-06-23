@@ -3,17 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package data2;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author darkman
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RV implements Serializable{
   
     private int id;
@@ -23,7 +29,7 @@ public class RV implements Serializable{
     private String etat;
     private String codeRV;
     private Planning planning;
-    private Client client;
+    private Client client;   
     private Pratiquant pratiquant;
 
     public int getId() {

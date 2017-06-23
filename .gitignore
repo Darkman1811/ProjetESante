@@ -7,6 +7,8 @@
 /ESante/dist
 /E-SanteClient/DB/
 /ESante/ESante-war
+/ESante/ESante-ejb/build/
+/ESante/ESante-ejb/dist/
 /EJBRemote/build/
 /EJBRemote/dist/
 /EJBRemote/nbproject/private/

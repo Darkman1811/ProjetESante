@@ -5,8 +5,11 @@
  */
 package crud.Admin;
 
+import dataNew.Client;
 import dataNew.Planning;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -58,6 +61,19 @@ public boolean delete(Planning planning)
    return false;
 }       
 
+public void fusionner(Set<Planning> list){
+    Iterator<Planning> it=list.iterator();
+   while(it.hasNext()){
+       Planning planning=it.next();
+       Planning tmp=em.find(Planning.class, planning.getId());
+       if(tmp==null){
+           this.ajouterPlanning(planning);
+       }
+       else{
+           this.modifier(planning);           
+       }
+   }
+}
 public Planning fromId(int id){
     return em.find(Planning.class, id);
 }

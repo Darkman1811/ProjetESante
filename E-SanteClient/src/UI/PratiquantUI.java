@@ -108,9 +108,7 @@ public class PratiquantUI {
         HBox boxTitle=new HBox(labelAjoutPratiquant);
         boxTitle.setAlignment(Pos.CENTER);
         
-        Label labelId=new Label("Id:");
-        TextField txtId=new TextField();
-        HBox boxId=new HBox(labelId,txtId);
+        
         
         Label labelPrenom=new Label("Prenom:");
         TextField txtPrenom=new TextField();
@@ -119,6 +117,10 @@ public class PratiquantUI {
         Label labelNom=new Label("Nom:");
         TextField txtNom=new TextField();
         HBox boxNom=new HBox(labelNom,txtNom);
+        
+        Label labelCni=new Label("Numéro carte identite:");
+        TextField txtCni=new TextField();
+        HBox boxCni=new HBox(labelCni,txtCni);
         
         Label labelTitre=new Label("Titre:");
         TextField txtTitre=new TextField();
@@ -139,7 +141,7 @@ public class PratiquantUI {
         Button btnAjouter=new Button("Ajouter");
         btnAjouter.setOnAction(e->{
         Pratiquant pratiquant=new Pratiquant();
-        pratiquant.setId(new Integer(txtId.getText()));
+        pratiquant.setCni(txtCni.getText());
         pratiquant.setPrenom(txtPrenom.getText());
         pratiquant.setNom(txtNom.getText());
         pratiquant.setTitre(txtTitre.getText());
@@ -152,7 +154,7 @@ public class PratiquantUI {
         HBox boxActions=new HBox(btnAjouter,btnAnnuler);
         
         VBox ajoutLayout=new VBox();
-        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxPrenom,boxNom,boxTitre,boxSpecialite,boxage,boxCivilite,boxActions);
+        ajoutLayout.getChildren().addAll(boxTitle,boxCni,boxPrenom,boxNom,boxTitre,boxSpecialite,boxage,boxCivilite,boxActions);
         
         
         Scene scene=new Scene(ajoutLayout);
@@ -184,6 +186,10 @@ public void modifierUI(){
         TextField txtNom=new TextField();
         HBox boxNom=new HBox(labelNom,txtNom);
         
+        Label labelCni=new Label("Numéro carte identite:");
+        TextField txtCni=new TextField();
+        HBox boxCni=new HBox(labelCni,txtCni);
+        
         Label labelTitre=new Label("Titre:");
         TextField txtTitre=new TextField();
         HBox boxTitre=new HBox(labelTitre,txtTitre);
@@ -206,6 +212,7 @@ public void modifierUI(){
         pratiquant.setId(new Integer(txtId.getText()));
         pratiquant.setPrenom(txtPrenom.getText());
         pratiquant.setNom(txtNom.getText());
+        pratiquant.setCni(txtCni.getText());
         pratiquant.setTitre(txtTitre.getText());
         pratiquant.setSpecialite(txtSpecialite.getText());
         pratiquant.setCivilite(txtCivilite.getText());
@@ -216,7 +223,7 @@ public void modifierUI(){
         HBox boxActions=new HBox(btnModifier,btnAnnuler);
         
         VBox ajoutLayout=new VBox();
-        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxPrenom,boxNom,boxTitre,boxSpecialite,boxage,boxCivilite,boxActions);
+        ajoutLayout.getChildren().addAll(boxTitle,boxId,boxPrenom,boxNom,boxCni,boxTitre,boxSpecialite,boxage,boxCivilite,boxActions);
         
         
         Scene scene=new Scene(ajoutLayout);

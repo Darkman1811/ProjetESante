@@ -16,6 +16,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import utils.LocalDateAdapter;
 
 /**
  *
@@ -26,10 +31,13 @@ import javax.persistence.TemporalType;
   @NamedQuery(name="JoursFeries.findAll",
               query="SELECT JF FROM JoursFeries JF")
 })
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class JoursFeries {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate date_bloque;
     private String fete;
     @ManyToOne

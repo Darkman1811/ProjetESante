@@ -8,7 +8,9 @@ package crud.Admin;
 
 
 import dataNew.Client;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -58,6 +60,19 @@ public boolean delete(Client client)
    return false;
 }       
 
+public void fusionner(Set<Client> list){
+    Iterator<Client> it=list.iterator();
+   while(it.hasNext()){
+       Client client=it.next();
+       Client tmp=em.find(Client.class, client.getId());
+       if(tmp==null){
+           this.ajouterClient(client);
+       }
+       else{
+           this.modifier(client);           
+       }
+   }
+}
 public Client fromId(int id){
     return em.find(Client.class, id);
 }

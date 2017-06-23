@@ -8,6 +8,7 @@ package dataNew;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -112,10 +113,19 @@ public class Planning implements Serializable {
         this.pratiquant = pratiquant;
     }
 
+   
+    @Override
+    public String toString() {
+        return "Planning-" + getId();
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 19 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.jours_de_semaine);
+        hash = 53 * hash + Objects.hashCode(this.heure_fermeture);
+        hash = 53 * hash + Objects.hashCode(this.structure);
+        hash = 53 * hash + Objects.hashCode(this.pratiquant);
         return hash;
     }
 
@@ -128,15 +138,22 @@ public class Planning implements Serializable {
             return false;
         }
         final Planning other = (Planning) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.jours_de_semaine, other.jours_de_semaine)) {
+            return false;
+        }
+        if (!Objects.equals(this.heure_ouverture, other.heure_ouverture)) {
+            return false;
+        }
+        if (!Objects.equals(this.heure_fermeture, other.heure_fermeture)) {
+            return false;
+        }
+        if (!Objects.equals(this.structure, other.structure)) {
+            return false;
+        }
+        if (!Objects.equals(this.pratiquant, other.pratiquant)) {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Planning-" + getId();
     }
 
    

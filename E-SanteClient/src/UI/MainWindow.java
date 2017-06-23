@@ -23,6 +23,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import metier.ConnectionEsante;
+import metier.Synchronizer;
 
 /**
  *
@@ -52,10 +53,16 @@ public class MainWindow extends Application {
             Label labelright=new Label("right");
             Label labelleft=new Label("Menu");
             
+//------------------------------------------------------------------------------BANNER LAYOUT            
             HBox bannerLayout=new HBox();
             bannerLayout.setAlignment(Pos.CENTER);
             
-            bannerLayout.getChildren().addAll(labeltop);
+            Button btnSynchronizer=new Button("Synchronizer");
+            btnSynchronizer.setOnAction(e->{
+            Synchronizer.sendData();
+            });
+            bannerLayout.getChildren().addAll(labeltop,btnSynchronizer);
+            
  //-----------------------------------------------------------------------------MENU          
             VBox menuLayout=new VBox();
             menuLayout.setAlignment(Pos.TOP_LEFT);
@@ -63,7 +70,7 @@ public class MainWindow extends Application {
             Button menuBtnClient=new Button("Gestion des Clients");
             menuBtnClient.setMinWidth(150);
             menuBtnClient.setOnAction(e->{
-                ClientUI clientUI=new ClientUI();
+            ClientUI clientUI=new ClientUI();
             mainLayout.setCenter(clientUI.getLayout());
             });
             

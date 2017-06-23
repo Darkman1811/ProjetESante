@@ -46,6 +46,7 @@ import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import metier.JoursBloquesMetier;
 import org.osgi.service.jpa.EntityManagerFactoryBuilder;
 /**
  *
@@ -128,28 +129,10 @@ public class testJPA extends Application {
     
       public String testerRest3
         (){
-            //AJOUT DES JOURS BLOQUES
-            
-              //création de jb1
-            JoursBloques jb1=new JoursBloques();
-            jb1.setId(1);
-            jb1.setDate_bloque(LocalDate.now());
-            jb1.setDate_fin_bloque(LocalTime.now());
-            jb1.setDebut_debut_bloque(LocalTime.now());
-            jb1.setRaison("pas de raison");
-            
-              //création de jb2
-            JoursBloques jb2=new JoursBloques();
-            jb2.setId(2);
-            jb2.setDate_bloque(LocalDate.now());
-            jb2.setDate_fin_bloque(LocalTime.now());
-            jb2.setDebut_debut_bloque(LocalTime.now());
-            jb2.setRaison("Abscense du médecin");
-            
-              //constitution de la liste
+            JoursBloquesMetier cm=new JoursBloquesMetier();
             List<JoursBloques> lst=new ArrayList<JoursBloques>();
-            lst.add(jb1);
-            lst.add(jb2);
+            lst.addAll(cm.getAll());
+            
             DataSync sync=new DataSync();
             sync.setJoursBloques(lst);
             Client client = ClientBuilder.newClient();
